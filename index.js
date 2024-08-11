@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 require('dotenv').config();
 const dbConnection = require('./db/config');
@@ -23,6 +25,9 @@ app.use('/api/auth/', require('./routes/auth'));
 //Notes Routes
 app.use('/api/notes/', require('./routes/notes'));
 
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+})
 
 //Listen requests
 // http://localhost:4001
